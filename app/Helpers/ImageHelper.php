@@ -1,0 +1,33 @@
+<?php
+
+declare(strict_types=1);
+
+use Illuminate\Support\Facades\Storage;
+
+if (!function_exists('store_image')) {
+    /**
+     * @param $image
+     * @param string $name
+     */
+    function store_image($image, string $name): void
+    {
+        $extension = $image->extension();
+        $imageName = "{$name}.{$extension}";
+
+        $image->storeAs('/public', $imageName);
+
+        Storage::url($imageName);
+    }
+}
+
+if (!function_exists('get_image_name')) {
+    /**
+     * @param $image
+     * @param string $name
+     * @return string
+     */
+    function get_image_name($image, string $name): string
+    {
+        return "{$name}.{$image->extension()}";
+    }
+}

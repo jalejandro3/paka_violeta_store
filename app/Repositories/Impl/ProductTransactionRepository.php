@@ -6,6 +6,7 @@ namespace App\Repositories\Impl;
 
 use App\Models\ProductTransaction;
 use App\Repositories\ProductTransactionRepository as ProductTransactionRepositoryInterface;
+use Illuminate\Database\Eloquent\Collection;
 
 final class ProductTransactionRepository implements ProductTransactionRepositoryInterface
 {
@@ -16,6 +17,14 @@ final class ProductTransactionRepository implements ProductTransactionRepository
     )
     {
         $this->productTransaction = $productTransaction;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function findAll(): Collection
+    {
+        return $this->productTransaction->get();
     }
 
     /**

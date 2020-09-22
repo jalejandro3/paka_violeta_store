@@ -53,7 +53,7 @@ final class ProductRepository implements ProductRepositoryInterface
         return $this->product->where(function($query) use($searchTerm, $fields) {
             $searchTermWildCard = '%' . $searchTerm . '%';
 
-            foreach ($fields as $field) {
+            foreach ($fields as $index => $field) {
                 $query->orWhere($field, 'like', $searchTermWildCard);
             }
         })->get();

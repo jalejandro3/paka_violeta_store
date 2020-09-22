@@ -18,8 +18,8 @@ class CreateProductTransactionsTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('product_id')->constrained();
             $table->string('action');
-            $table->longText('old_data');
-            $table->longText('new_data');
+            $table->longText('old_data')->nullable();
+            $table->longText('new_data')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

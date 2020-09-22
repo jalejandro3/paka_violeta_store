@@ -12,9 +12,9 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="/dashboard" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-jet-nav-link>
+{{--                    <x-jet-nav-link href="/dashboard" :active="request()->routeIs('dashboard')">--}}
+{{--                        {{ __('Dashboard') }}--}}
+{{--                    </x-jet-nav-link>--}}
 
                     <x-jet-nav-link href="/products" :active="request()->routeIs('products')">
                         {{ __('Products') }}
@@ -22,6 +22,10 @@
 
                     <x-jet-nav-link href="/accounting" :active="request()->routeIs('accounting')">
                         {{ __('Accounting') }}
+                    </x-jet-nav-link>
+
+                    <x-jet-nav-link href="/history" :active="request()->routeIs('history')">
+                        {{ __('History') }}
                     </x-jet-nav-link>
                 </div>
             </div>

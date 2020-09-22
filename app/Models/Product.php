@@ -12,7 +12,7 @@ class Product extends Model
     /**
      * @var array
      */
-    protected $fillable = ['color_id', 'sku', 'description', 'size', 'price', 'image', 'is_sold', 'created_at', 'updated_at'];
+    protected $fillable = ['color', 'size', 'sku', 'description', 'price', 'image', 'is_sold', 'created_at', 'updated_at'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -31,14 +31,6 @@ class Product extends Model
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime'
     ];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function color()
-    {
-        return $this->belongsTo(Color::class);
-    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

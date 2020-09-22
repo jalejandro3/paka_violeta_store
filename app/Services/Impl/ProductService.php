@@ -79,7 +79,7 @@ final class ProductService implements ProductServiceInterface
             $transactionData = [
                 'user_id' => auth()->user()->getAuthIdentifier(),
                 'product_id' => $product->id,
-                'action' => 'create',
+                'action' => 'Created',
                 'old_data' => null,
                 'new_data' => serialize($product)
             ];
@@ -107,7 +107,7 @@ final class ProductService implements ProductServiceInterface
             $transactionData = [
                 'user_id' => auth()->user()->getAuthIdentifier(),
                 'product_id' => $id,
-                'action' => 'updated',
+                'action' => 'Updated',
                 'old_data' => serialize($product),
                 'new_data' => serialize($product->refresh())
             ];

@@ -1,0 +1,37 @@
+{
+    "colors": [
+        {
+            "name": "Azul"
+        },
+        {
+            "name": "Amarillo"
+        },
+        {
+            "name": "Verde"
+        },
+        {
+            "name": "Rojo"
+        },
+        {
+            "name": "Marrón"
+        },
+        {
+            "name": "Celeste"
+        },
+        {
+            "name": "Morado"
+        },
+        {
+            "name": "Rosado"
+        },
+        {
+            "name": "Blanco"
+        },
+        {
+            "name": "Almendra"
+        },
+        {
+            "name": "Negro"
+        }
+    ]
+}

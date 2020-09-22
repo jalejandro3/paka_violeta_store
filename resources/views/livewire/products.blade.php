@@ -6,7 +6,7 @@
                placeholder="{{ __("Search product") }}"
                wire:model="searchTerm"
                wire:keyup="filterProduct()">
-        <button class="flex-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2 inline-flex items-center"
+        <button class="flex-3 bg-purple-600 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded m-2 inline-flex items-center"
                 wire:click="redirectToProductForm">
             <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
@@ -18,20 +18,32 @@
     <div class="grid grid-cols-3 place-items-auto">
         @forelse($products as $product)
             <div class="m-2 max-w-xs rounded overflow-hidden shadow-lg">
-                <img class="w-full" src="https://tailwindcss.com/img/card-top.jpg" alt="{{ $product->sku }}">
-                <div class="px-6 py-4">
-                    <div class="font-bold text-xl text-center mb-2">{{ $product->sku }}</div>
-                    <p class="text-gray-700 text-base">
-                        <strong>{{ __("Description") }}:</strong> {{ $product->description }}
+                <button wire:click="getProductDetail">
+                    <img class="w-64 h-64 object-cover" src="{{ asset("images/{$product->image}") }}" alt="{{ $product->sku }}" title="{{ $product->sku }}">
+                </button>
+                <div class="px-6 py-4 bg-gray-200 h-full">
+                    <div class="font-bold text-xl text-center mb-2">
+                        {{ $product->sku }}
+                        @if($product->is_sold)
+                            <span class="inline-block bg-red-300 rounded px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                                {{ __("Sold") }}
+                            </span>
+                        @endif
+                    </div>
+                    <p class="text-purple-800 text-base">
+                        <strong>{{ __("Price") }}:</strong> <span class="text-gray-800">${{ $product->price }}</span>
                     </p>
-                    <p class="text-gray-700 text-base">
-                        <strong>{{ __("Price") }}:</strong> {{ $product->price }}
+                    <p class="text-purple-800 text-base">
+                        <strong>{{ __("Color") }}:</strong> <span class="text-gray-800">{{ __($product->color) }}</span>
                     </p>
-                    <p class="text-gray-700 text-base">
-                        <strong>{{ __("Color") }}:</strong> {{ $product->color->name }}
+                    <p class="text-purple-800 text-base">
+                        <strong>{{ __("Size") }}:</strong> <span class="text-gray-800">{{ $product->size }}</span>
                     </p>
-                    <p class="text-gray-700 text-base">
-                        <strong>{{ __("Size") }}:</strong> {{ $product->size }}
+                    <p class="text-purple-800 text-base">
+                        <strong>{{ __("Categories") }}:</strong>
+                        <span class="inline-block bg-green-200 rounded px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                            <a href="#">{{ __("Pants") }}</a>
+                        </span>
                     </p>
                 </div>
             </div>

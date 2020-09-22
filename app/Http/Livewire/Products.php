@@ -37,4 +37,9 @@ class Products extends Component
     {
         $this->redirect('product/create');
     }
+
+    public function getProductDetail()
+    {
+        dd("hola producto");
+    }
 }

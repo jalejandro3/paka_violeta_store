@@ -4,26 +4,36 @@ declare(strict_types=1);
 
 namespace App\Http\Livewire;
 
+use App\Repositories\ColorRepository;
+use App\Repositories\SizeRepository;
 use App\Services\ProductService;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
-use Livewire\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
 
 class ProductForm extends Component
 {
     use WithFileUploads;
 
-    public int $colorId = 0;
+    public string $color = '';
     public string $sku = '';
     public float $price = 0;
     public string $size = '';
     public string $description = '';
     public $image;
+    public Collection $colors;
+    public Collection $sizes;
+
+    public function mount(ColorRepository $colorRepository, SizeRepository $sizeRepository)
+    {
+        $this->colors = $colorRepository->findAll()->sortBy("name", SORT_ASC);
+        $this->sizes = $sizeRepository->findAll();
+    }
 
     public function createProduct(ProductService $productService)
     {
         $this->validate([
-            'colorId' => 'required|integer',
+            'color' => 'required|string',
             'sku' => 'required|string',
             'size' => 'required|string',
             'price' => 'required|numeric',
@@ -32,7 +42,7 @@ class ProductForm extends Component
         ]);
 
         $data = [
-            'color_id' => $this->colorId,
+            'color' => $this->color,
             'sku' => $this->sku,
             'price' => $this->price,
             'size' => $this->size,

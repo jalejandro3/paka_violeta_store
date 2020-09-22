@@ -14,7 +14,7 @@ if (!function_exists('store_image')) {
         $extension = $image->extension();
         $imageName = "{$name}.{$extension}";
 
-        $image->storeAs('/public', $imageName);
+        $image->storeAs('/public/images', $imageName);
 
         Storage::url($imageName);
     }

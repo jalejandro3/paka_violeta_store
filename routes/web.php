@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('welcome');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -32,7 +32,3 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/accounting', function () 
 Route::middleware(['auth:sanctum', 'verified'])->get('/product/create', function () {
     return view('admin.product-form');
 })->name('product-form');
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/history', function () {
-    return view('admin.history');
-})->name('history');

@@ -12,7 +12,7 @@ class PostTransaction extends Model
     /**
      * @var array
      */
-    protected $fillable = ['post_id', 'user_id', 'action', 'created_at', 'updated_at'];
+    protected $fillable = ['post_id', 'user_id', 'action'];
 
     /**
      * The attributes that should be hidden for arrays.

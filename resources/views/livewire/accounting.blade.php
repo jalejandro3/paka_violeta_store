@@ -15,8 +15,8 @@
                 <td class="border px-4 py-2">{{ $soldProduct->price }}</td>
             </tr>
         @empty
-            <tr class="text-center">
-                <td colspan="4" class="py-3 italic">{{ __("There are not products sold.") }}</td>
+            <tr>
+                <td colspan="3" class="text-center py-4 text-lg italic">{{ __("There are not sold products.") }}</td>
             </tr>
         @endforelse
         </tbody>

@@ -13,7 +13,7 @@ class Size extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'created_at', 'updated_at'];
+    protected $fillable = ['name'];
 
     /**
      * The attributes that should be hidden for arrays.

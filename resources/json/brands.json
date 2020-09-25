@@ -1,0 +1,62 @@
+{
+    "categories": [
+        {
+            "name": "Hogar",
+            "brands": []
+        },
+        {
+            "name": "Hombre",
+            "brands": [
+                {
+                    "name": "Levis"
+                },
+                {
+                    "name": "Tommy Hilfiger"
+                },
+                {
+                    "name": "kevingston"
+                }
+            ]
+        },
+        {
+            "name": "Mujer",
+            "brands": [
+                {
+                    "name": "Levis"
+                },
+                {
+                    "name": "Jazmin Chebar"
+                },
+                {
+                    "name": "Kill"
+                },
+                {
+                    "name": "Cuesta Blanca"
+                }
+            ]
+        },
+        {
+            "name": "Bebe",
+            "brands": [
+                {
+                    "name": "Mimo&Co"
+                },
+                {
+                    "name": "H&M"
+                },
+                {
+                    "name": "Cheeky"
+                },
+                {
+                    "name": "Carters"
+                },
+                {
+                    "name": "Primark"
+                },
+                {
+                    "name": "C&A"
+                }
+            ]
+        }
+    ]
+}

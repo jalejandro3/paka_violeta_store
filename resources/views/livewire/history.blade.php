@@ -26,8 +26,8 @@
                 <td class="border px-4 py-2 whitespace-no-wrap">{{ $item->updated_at }}</td>
             </tr>
         @empty
-            <tr class="text-center">
-                <td colspan="4" class="py-3 italic">{{ __("There is not registry.") }}</td>
+            <tr>
+                <td colspan="12" class="py-4 text-lg text-center italic">{{ __("There are not registries.") }}</td>
             </tr>
         @endforelse
         </tbody>

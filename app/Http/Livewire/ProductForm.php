@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Livewire;
 
+use App\Models\Category;
 use App\Repositories\ColorRepository;
 use App\Repositories\SizeRepository;
 use App\Services\ProductService;
@@ -20,12 +21,14 @@ class ProductForm extends Component
     public float $price = 0;
     public string $size = '';
     public string $description = '';
-    public $image;
-    public Collection $colors;
-    public Collection $sizes;
+    public $image = null;
+    public ?Collection $colors = null;
+    public ?Collection $sizes = null;
+    public ?Collection $categories = null;
 
     public function mount(ColorRepository $colorRepository, SizeRepository $sizeRepository)
     {
+        $this->categories = Category::all();
         $this->colors = $colorRepository->findAll()->sortBy("name", SORT_ASC);
         $this->sizes = $sizeRepository->findAll();
     }
@@ -42,6 +45,7 @@ class ProductForm extends Component
         ]);
 
         $data = [
+            'brand' => 'H&M',
             'color' => $this->color,
             'sku' => $this->sku,
             'price' => $this->price,
@@ -51,6 +55,8 @@ class ProductForm extends Component
         ];
 
         $productService->create($data);
+
+        session()->flash('message', 'Product successfully created.');
 
         $this->redirect('/products');
     }
@@ -63,5 +69,15 @@ class ProductForm extends Component
     public function redirectToProducts()
     {
         $this->redirect('/products');
+    }
+
+    public function removeImage()
+    {
+        $this->image = null;
+    }
+
+    public function loadCategoryBrands(Category $category)
+    {
+        $this->brands = $category->brands;
     }
 }

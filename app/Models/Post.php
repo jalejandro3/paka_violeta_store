@@ -12,7 +12,7 @@ class Post extends Model
     /**
      * @var array
      */
-    protected $fillable = ['user_id', 'product_id', 'post_type_id', 'url_id', 'created_at', 'updated_at'];
+    protected $fillable = ['user_id', 'product_id', 'post_type_id', 'url_id'];
 
     /**
      * The attributes that should be hidden for arrays.

@@ -7,13 +7,14 @@ namespace App\Repositories\Impl;
 use App\Models\Product;
 use App\Repositories\ProductRepository as ProductRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 final class ProductRepository implements ProductRepositoryInterface
 {
     /**
      * @var Product
      */
-    private Product $product;
+    private $product;
 
     /**
      * ProductRepository constructor.
@@ -38,6 +39,14 @@ final class ProductRepository implements ProductRepositoryInterface
     /**
      * @inheritDoc
      */
+    public function findAllWithPagination(): LengthAwarePaginator
+    {
+        return $this->product->paginate(env('PRODUCT_PAGINATION'));
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function findAllSold(): Collection
     {
         return $this->product->whereIsSold(true)->get();
@@ -46,7 +55,7 @@ final class ProductRepository implements ProductRepositoryInterface
     /**
      * @inheritDoc
      */
-    public function findByTerm(string $searchTerm): Collection
+    public function findByTerm(string $searchTerm): LengthAwarePaginator
     {
         $fields = $this->product->getFillable();
 
@@ -56,7 +65,7 @@ final class ProductRepository implements ProductRepositoryInterface
             foreach ($fields as $index => $field) {
                 $query->orWhere($field, 'like', $searchTermWildCard);
             }
-        })->get();
+        })->paginate(env('PRODUCT_PAGINATION'));
     }
 
     /**

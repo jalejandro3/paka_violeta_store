@@ -12,7 +12,7 @@ class PostType extends Model
     /**
      * @var array
      */
-    protected $fillable = ['type', 'created_at', 'updated_at'];
+    protected $fillable = ['type'];
 
     /**
      * The attributes that should be hidden for arrays.

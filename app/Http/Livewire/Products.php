@@ -5,41 +5,36 @@ declare(strict_types=1);
 namespace App\Http\Livewire;
 
 use App\Repositories\ProductRepository;
-use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class Products extends Component
 {
-    public Collection $products;
-    public string $searchTerm = '';
+    public string $search = '';
+    public int $page = 1;
+    protected $queryString = [
+        'search' => ['except' => ''],
+        'page' => ['except' => 1],
+    ];
 
-    public function mount(ProductRepository $productRepository)
+    public function mount(): void
     {
-        $this->products = $productRepository->findAll();
+        $this->fill(request()->only('search', 'page'));
     }
 
-    public function render()
+    public function render(ProductRepository $productRepository)
     {
-        return view('livewire.products');
+        return view('livewire.products', [
+            'products' => $productRepository->findByTerm($this->search)
+        ]);
     }
 
-    public function filterProduct(ProductRepository $productRepository)
+    public function redirectToProductForm(): void
     {
-        if (! empty($this->searchTerm)) {
-            $this->products = $productRepository->findByTerm($this->searchTerm);
-
-        } else {
-            $this->products = $productRepository->findAll();
-        }
+        redirect()->to('product/create');
     }
 
-    public function redirectToProductForm()
+    public function redirectToProductDetail(int $productId): void
     {
-        $this->redirect('product/create');
-    }
-
-    public function getProductDetail()
-    {
-        dd("hola producto");
+        redirect()->to("product/detail/}");
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Product;
+use App\Repositories\ProductRepository;
 use Livewire\Component;
 
 class ProductDetail extends Component
@@ -10,4 +12,5 @@ class ProductDetail extends Component
     {
         return view('livewire.product-detail');
     }
+
 }

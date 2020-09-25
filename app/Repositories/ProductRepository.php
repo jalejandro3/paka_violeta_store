@@ -6,6 +6,7 @@ namespace App\Repositories;
 
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 interface ProductRepository
 {
@@ -15,6 +16,13 @@ interface ProductRepository
      * @return Collection
      */
     public function findAll(): Collection;
+
+    /**
+     * Get all products paginated
+     *
+     * @return LengthAwarePaginator
+     */
+    public function findAllWithPagination(): LengthAwarePaginator;
 
     /**
      * Get a product by id
@@ -35,9 +43,9 @@ interface ProductRepository
      * Find products by a term
      *
      * @param string $searchTerm
-     * @return Collection
+     * @return LengthAwarePaginator
      */
-    public function findByTerm(string $searchTerm): Collection;
+    public function findByTerm(string $searchTerm): LengthAwarePaginator;
 
     /**
      * Create a product

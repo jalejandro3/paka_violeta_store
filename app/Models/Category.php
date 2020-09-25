@@ -12,7 +12,7 @@ class Category extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'created_at', 'updated_at'];
+    protected $fillable = ['name'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -32,11 +32,8 @@ class Category extends Model
         'deleted_at' => 'datetime'
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function sizes()
+    public function brands()
     {
-        return $this->hasMany(CategorySize::class);
+        return $this->hasMany(Brand::class);
     }
 }

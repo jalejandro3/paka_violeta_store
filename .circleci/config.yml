@@ -61,8 +61,8 @@ jobs:
       - run: php artisan db:wipe --force
 
       # prepare Laravel DB
-      - run: php artisan migrate
-      - run: php artisan db:seed
+      - run: php artisan migrate --force
+      - run: php artisan db:seed --force
 
       # prepare Laravel Storage images
       - run: php artisan storage:link

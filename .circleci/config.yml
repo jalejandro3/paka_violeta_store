@@ -58,7 +58,7 @@ jobs:
 #      - run: php artisan key:generate
 
       # wiping database
-      - run: php artisan db:wipe
+      - run: php artisan db:wipe --force
 
       # prepare Laravel DB
       - run: php artisan migrate

@@ -7,7 +7,7 @@
             <div class="md:w-2/3">
                 @if ($image)
                     <span class="text-sm text-left bg-red-600 hover:bg-red-800 text-white font-bold px-2 rounded m-2 inline-flex items-center"
-                            wire:click="removeImage">X</span>
+                            wire:click="$set('image', {{ null }})">X</span>
                     <img class="w-64 h-64" src="{{ $image->temporaryUrl() }}" alt="preview">
                 @else
                     <input id="product-image"
@@ -42,6 +42,7 @@
             <div class="lg:w-2/3">
                 <div class="inline-block relative w-64">
                     <select id="category"
+                            wire:model="categoryId"
                             class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
                         <option value="">{{ __("Select a category") }}</option>
                         @foreach($categories as $category)
@@ -55,6 +56,30 @@
             </div>
         </div>
 
+        @if($brands)
+            <div class="md:flex md:items-center mb-6">
+                <div class="md:w-1/3">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="brand">{{ __("Brands") }}</label>
+                </div>
+                <div class="lg:w-2/3">
+                    <div class="inline-block relative w-64">
+                        <select id="brand"
+                                wire:model="brandId"
+                                class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                            <option value=null>{{ __("Select a brand") }}</option>
+                            @foreach($brands as $brand)
+                                <option value="{{ $brand->id }}">{{ __($brand->name) }}</option>
+                            @endforeach
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        </div>
+                    </div>
+                </div>
+                @error('colorId') <span class="text-red-500">{{ $message }}</span> @enderror
+            </div>
+        @endif
+
         <div class="md:flex md:items-center mb-6">
             <div class="md:w-1/3">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="color">{{ __("Color") }}</label>
@@ -63,17 +88,17 @@
                 <div class="inline-block relative w-64">
                     <select id="color"
                             class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                            wire:model="color">
+                            wire:model="colorId">
                         <option value="">{{ __("Select a color") }}</option>
                         @foreach($colors as $color)
-                            <option value="{{ $color->name }}">{{ __($color->name) }}</option>
+                            <option value="{{ $color->id }}">{{ __($color->name) }}</option>
                         @endforeach
                     </select>
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                     </div>
                 </div>
-                @error('color') <span class="text-red-500">{{ $message }}</span> @enderror
+                @error('colorId') <span class="text-red-500">{{ $message }}</span> @enderror
             </div>
         </div>
 
@@ -84,17 +109,17 @@
             <div class="md:w-2/3">
                 <div class="inline-block relative w-64">
                     <select id="size"
-                            wire:model="size"
+                            wire:model="sizeId"
                             class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
                         <option value="">{{ __("Select a size") }}</option>
                         @foreach($sizes as $size)
-                            <option value="{{ $size->name }}">{{ $size->name }}</option>
+                            <option value="{{ $size->id }}">{{ $size->name }}</option>
                         @endforeach
                     </select>
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                     </div>
-                    @error('size') <span class="text-red-500">{{ $message }}</span> @enderror
+                    @error('sizeId') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
             </div>
         </div>

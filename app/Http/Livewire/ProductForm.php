@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Livewire;
 
+use App\Models\Brand;
 use App\Models\Category;
 use App\Repositories\ColorRepository;
 use App\Repositories\SizeRepository;
@@ -16,15 +17,18 @@ class ProductForm extends Component
 {
     use WithFileUploads;
 
-    public string $color = '';
+    public $price;
+    public $image;
+    public ?int $brandId = null;
+    public ?int $categoryId = null;
+    public ?int $colorId = null;
+    public ?int $sizeId = null;
     public string $sku = '';
-    public float $price = 0;
-    public string $size = '';
     public string $description = '';
-    public $image = null;
+    public ?Collection $brands = null;
+    public ?Collection $categories = null;
     public ?Collection $colors = null;
     public ?Collection $sizes = null;
-    public ?Collection $categories = null;
 
     public function mount(ColorRepository $colorRepository, SizeRepository $sizeRepository)
     {
@@ -36,48 +40,48 @@ class ProductForm extends Component
     public function createProduct(ProductService $productService)
     {
         $this->validate([
-            'color' => 'required|string',
+            'brandId' => 'required|integer',
+            'colorId' => 'required|integer',
+            'sizeId' => 'required|integer',
             'sku' => 'required|string',
-            'size' => 'required|string',
             'price' => 'required|numeric',
             'description' => 'required|string',
-            'image' => 'mimes:jpeg,png|max:1014',
+            'image' => 'mimes:jpeg,png|max:1014'
         ]);
 
         $data = [
-            'brand' => 'H&M',
-            'color' => $this->color,
+            'brand_id' => $this->brandId,
+            'color_id' => $this->colorId,
+            'size_id' => $this->sizeId,
             'sku' => $this->sku,
             'price' => $this->price,
-            'size' => $this->size,
             'description' => $this->description,
             'image' => $this->image
         ];
 
         $productService->create($data);
 
-        session()->flash('message', 'Product successfully created.');
+        session()->flash('message', __("Product successfully created."));
 
         $this->redirect('/products');
     }
 
     public function render()
     {
+        $this->getBrandsByCategoryId();
+
         return view('livewire.product-form');
     }
 
     public function redirectToProducts()
     {
-        $this->redirect('/products');
+        redirect()->to('products');
     }
 
-    public function removeImage()
+    protected function getBrandsByCategoryId()
     {
-        $this->image = null;
-    }
-
-    public function loadCategoryBrands(Category $category)
-    {
-        $this->brands = $category->brands;
+        if (! is_null($this->categoryId)) {
+            $this->brands = Brand::whereCategoryId($this->categoryId)->get();
+        }
     }
 }

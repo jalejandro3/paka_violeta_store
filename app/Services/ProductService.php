@@ -41,10 +41,11 @@ interface ProductService
      *
      * @param int $id Product id
      * @param array $data Product data
+     * @param string $action Update action
      * @return array
      * @throws ResourceNotFoundException|ApplicationException
      */
-    public function update(int $id, array $data): array;
+    public function update(int $id, array $data, string $action): array;
 
     /**
      * Delete a product

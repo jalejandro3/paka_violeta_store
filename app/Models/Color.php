@@ -31,4 +31,9 @@ class Color extends Model
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime'
     ];
+
+    public function product()
+    {
+        return $this->hasOne(Product::class);
+    }
 }

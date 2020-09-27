@@ -32,4 +32,9 @@ class Size extends Model
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime'
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

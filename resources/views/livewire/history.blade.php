@@ -3,7 +3,7 @@
         <thead>
         <tr class="bg-gray-200">
             <th class="px-4 py-2">{{ __("User") }}</th>
-            <th class="px-4 py-2">{{ __("Product") }}</th>
+            <th class="px-4 py-2">{{ __("SKU") }}</th>
             <th class="px-4 py-2">{{ __("Action") }}</th>
             <th class="px-4 py-2 whitespace-no-wrap">{{ __("Old Data") }}</th>
             <th class="px-4 py-2 whitespace-no-wrap">{{ __("New Data") }}</th>
@@ -17,7 +17,7 @@
                 <td class="border px-4 py-2">
                     <div>{{ $item->user->name }}</div>
                     <div><small>({{ $item->user->email }})</small></div></td>
-                <td class="border px-4 py-2 whitespace-no-wrap"><small>{{ __("SKU")}}: {{ $item->product->sku }}</small></td>
+                <td class="border px-4 py-2 whitespace-no-wrap"><small>{{ __("SKU")}}: {{ $item->sku }}</small></td>
                 <td class="border px-4 py-2">{{ __($item->action) }}</td>
                 {{-- @todo: Desarrollar información del producto antes y después de la acción, crear metodo en el controller. --}}
                 <td class="border px-4 py-2">-</td>

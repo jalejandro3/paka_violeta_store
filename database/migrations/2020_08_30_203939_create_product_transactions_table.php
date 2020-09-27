@@ -17,6 +17,7 @@ class CreateProductTransactionsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('product_id')->constrained();
+            $table->string('sku');
             $table->string('action');
             $table->longText('old_data')->nullable();
             $table->longText('new_data')->nullable();

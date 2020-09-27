@@ -39,11 +39,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/products', function () {
     return view('admin.products');
 })->name('products');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/product/create', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/products/create', function () {
     return view('admin.product-form');
 })->name('product-form');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/product/detail/{id}', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/products/detail/{id}', function () {
     return view('admin.product-detail');
 })->name('product-detail');
 

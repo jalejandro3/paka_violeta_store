@@ -14,7 +14,7 @@ final class ProductRepository implements ProductRepositoryInterface
     /**
      * @var Product
      */
-    private $product;
+    private Product $product;
 
     /**
      * ProductRepository constructor.
@@ -49,7 +49,7 @@ final class ProductRepository implements ProductRepositoryInterface
      */
     public function findAllSold(): Collection
     {
-        return $this->product->whereIsSold(true)->get();
+        return $this->product->withTrashed()->whereIsSold(true)->get();
     }
 
     /**
@@ -57,15 +57,18 @@ final class ProductRepository implements ProductRepositoryInterface
      */
     public function findByTerm(string $searchTerm): LengthAwarePaginator
     {
-        $fields = $this->product->getFillable();
+        $searchTermWildCard = '%' . $searchTerm . '%';
+        $fields = ['brands.name', 'categories.name', 'colors.name', 'sizes.name', 'sku', 'description', 'price', 'image', 'is_sold'];
 
-        return $this->product->where(function($query) use($searchTerm, $fields) {
-            $searchTermWildCard = '%' . $searchTerm . '%';
-
-            foreach ($fields as $index => $field) {
-                $query->orWhere($field, 'like', $searchTermWildCard);
-            }
-        })->paginate(env('PRODUCT_PAGINATION'));
+       return $this->product->join('brands', 'products.brand_id', '=', 'brands.id')
+            ->join('categories', 'brands.category_id', '=', 'categories.id')
+            ->join('colors', 'products.color_id', '=', 'colors.id')
+            ->join('sizes', 'products.size_id', '=', 'sizes.id')
+            ->where(function($q) use($searchTerm, $fields, $searchTermWildCard) {
+                foreach ($fields as $index => $field) {
+                    $q->orWhere($field, 'like', $searchTermWildCard);
+                }
+            })->paginate(env('PRODUCT_PAGINATION'));
     }
 
     /**

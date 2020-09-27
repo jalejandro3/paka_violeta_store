@@ -49,5 +49,14 @@
     "Generating preview...": "Generando vista previa...",
     "Load an image": "Carga una imagen",
     "Category": "Categoría",
-    "Select a category": "Seleccione una categoría"
+    "Select a category": "Seleccione una categoría",
+    "Check as sold": "Marcar como vendido",
+    "Available again": "Disponible nuevamente",
+    "Delete Product": "Eliminar Producto",
+    "Are you sure you want to delete the product?": "Está seguro que quiere eliminar el producto?",
+    "Delete": "Eliminar",
+    "Cancel": "Cancelar",
+    "Deleted": "Eliminado",
+    "Product successfully deleted.": "Producto eliminado exitosamente.",
+    "Product successfully created.": "Producto creado exitosamente."
 }

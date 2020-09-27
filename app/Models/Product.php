@@ -13,9 +13,9 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'brand',
-        'color',
-        'size',
+        'brand_id',
+        'color_id',
+        'size_id',
         'sku',
         'description',
         'price',
@@ -57,8 +57,18 @@ class Product extends Model
         return $this->hasMany(ProductTransaction::class);
     }
 
-    public function categories()
+    public function brand()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function color()
+    {
+        return $this->belongsTo(Color::class);
+    }
+
+    public function size()
+    {
+        return $this->belongsTo(Size::class);
     }
 }

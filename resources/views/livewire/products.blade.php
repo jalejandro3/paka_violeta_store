@@ -33,27 +33,37 @@
                             <span class="text-purple-800 text-sm">{{ __("SKU") }}:</span>
                             <span class="text-sm">{{ $product->sku }}</span>
                         </div>
-                        @if($product->is_sold)
-                            <span class="bg-red-300 rounded px-3 py-1 text-sm font-semibold text-gray-700 text-center">
-                                {{ __("Sold") }}
-                            </span>
-                        @endif
                     </div>
+                    <p class="text-purple-800 text-base">
+                        <strong>{{ __("Brand") }}:</strong> <span class="text-gray-800">{{ $product->brand->name }}</span>
+                    </p>
                     <p class="text-purple-800 text-base">
                         <strong>{{ __("Price") }}:</strong> <span class="text-gray-800">${{ $product->price }}</span>
                     </p>
                     <p class="text-purple-800 text-base">
-                        <strong>{{ __("Color") }}:</strong> <span class="text-gray-800">{{ __($product->color) }}</span>
+                        <strong>{{ __("Color") }}:</strong> <span class="text-gray-800">{{ __($product->color->name) }}</span>
                     </p>
                     <p class="text-purple-800 text-base">
-                        <strong>{{ __("Size") }}:</strong> <span class="text-gray-800">{{ $product->size }}</span>
+                        <strong>{{ __("Size") }}:</strong> <span class="text-gray-800">{{ $product->size->name }}</span>
                     </p>
                     <p class="text-purple-800 text-base">
-                        <strong>{{ __("Categories") }}:</strong>
+                        <strong>{{ __("Category") }}:</strong>
                         <span class="inline-block bg-green-200 rounded px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                            <a href="#">{{ __("Pants") }}</a>
+                            {{ $product->brand->category->name }}
                         </span>
                     </p>
+                    <div class="text-center">
+                        @if(! $product->is_sold)
+                            <button class="bg-purple-600 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded m-2"
+                                    wire:click="checkAsSold({{ $product }})">
+                                {{ __("Check as sold") }}
+                            </button>
+                        @else
+                            <div class="bg-red-500 text-white font-bold py-2 px-4 rounded m-2">
+                                {{ __("Sold") }}
+                            </div>
+                        @endif
+                    </div>
                 </div>
             </div>
         @endforeach

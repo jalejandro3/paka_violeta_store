@@ -79,6 +79,7 @@ final class ProductService implements ProductServiceInterface
             $transactionData = [
                 'user_id' => auth()->user()->getAuthIdentifier(),
                 'product_id' => $product->id,
+                'sku' => $product->sku,
                 'action' => 'Created',
                 'old_data' => null,
                 'new_data' => serialize($product)
@@ -93,13 +94,13 @@ final class ProductService implements ProductServiceInterface
     /**
      * @inheritDoc
      */
-    public function update(int $id, array $data): array
+    public function update(int $id, array $data, string $action): array
     {
         $this->checkIfUserIsLogged();
 
         $this->checkProductExists($id);
 
-        return DB::transaction(function() use($id, $data) {
+        return DB::transaction(function() use($id, $data, $action) {
             $product = $this->productRepository->findById($id);
 
             $this->productRepository->update($id, $data);
@@ -107,7 +108,8 @@ final class ProductService implements ProductServiceInterface
             $transactionData = [
                 'user_id' => auth()->user()->getAuthIdentifier(),
                 'product_id' => $id,
-                'action' => 'Updated',
+                'sku' => $product->sku,
+                'action' => $action,
                 'old_data' => serialize($product),
                 'new_data' => serialize($product->refresh())
             ];
@@ -125,7 +127,22 @@ final class ProductService implements ProductServiceInterface
     {
         $this->checkProductExists($id);
 
-        $this->productRepository->delete($id);
+        DB::transaction(function() use($id) {
+            $product = $this->productRepository->findById($id);
+
+            $transactionData = [
+                'user_id' => auth()->user()->getAuthIdentifier(),
+                'product_id' => $product->id,
+                'sku' => $product->sku,
+                'action' => 'Deleted',
+                'old_data' => serialize($product),
+                'new_data' => ''
+            ];
+
+            $this->productTransactionRepository->create($transactionData);
+
+            $this->productRepository->delete($id);
+        });
 
         return ['msg' => __('Product deleted successfully.')];
     }

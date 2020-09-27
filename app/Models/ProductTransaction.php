@@ -12,7 +12,7 @@ class ProductTransaction extends Model
     /**
      * @var array
      */
-    protected $fillable = ['user_id', 'product_id', 'action', 'current_data', 'new_data'];
+    protected $fillable = ['user_id', 'product_id', 'action', 'sku', 'current_data', 'new_data'];
 
     /**
      * The attributes that should be hidden for arrays.

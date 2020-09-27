@@ -15,9 +15,9 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('brand');
-            $table->string('color');
-            $table->string('size');
+            $table->foreignId('brand_id')->constrained();
+            $table->foreignId('color_id')->constrained();
+            $table->foreignId('size_id')->constrained();
             $table->string('sku');
             $table->double('price')->default(0);
             $table->string('description');
@@ -34,7 +34,11 @@ class CreateProductsTable extends Migration
      * @return void
      */
     public function down()
-    {
+    {Schema::table('brands', function (Blueprint $table) {
+        $table->dropForeign('product_brand_id_foreign');
+        $table->dropForeign('product_color_id_foreign');
+        $table->dropForeign('product_size_id_foreign');
+    });
         Schema::dropIfExists('products');
     }
 }

@@ -14,9 +14,7 @@ if (!function_exists('store_image')) {
         $extension = $image->extension();
         $imageName = "{$name}.{$extension}";
 
-        $image->storeAs('/public/images', $imageName);
-
-        Storage::url($imageName);
+        Storage::disk('s3')->put("products/{$imageName}", $image);
     }
 }
 

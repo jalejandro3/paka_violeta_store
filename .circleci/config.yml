@@ -54,8 +54,8 @@ jobs:
             - node_modules
 
       # prepare Laravel env
-      - run: cp .env.example .env
-      - run: php artisan key:generate
+#      - run: cp .env.example .env
+#      - run: php artisan key:generate
 
       # wiping database
       - run: php artisan db:wipe

@@ -14,8 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/**
+ * GUEST INDEX
+ */
 Route::get('/', function () {
-    return view('welcome');
+    return view('guest.home');
+});
+
+/**
+ * ADMIN LOGIN
+ */
+Route::get('/admin', function () {
+    return view('auth.login');
 });
 
 /**

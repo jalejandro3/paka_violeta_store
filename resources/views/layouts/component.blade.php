@@ -60,6 +60,7 @@
 
     <!-- Page Content -->
     <main>
+        {{-- @TODO: move code to a alert component --}}
         <div class="justify-center mx-auto p-4 max-w-4xl mb-4">
             @if (session()->has('message'))
                 <div class="alert-banner rounded top-0 mx-auto">
@@ -79,6 +80,7 @@
 
     @livewireScripts
 
+    {{-- @TODO: move to a js file. --}}
     <script type="text/javascript">
         var openmodal = document.querySelectorAll('.modal-open')
         for (var i = 0; i < openmodal.length; i++) {

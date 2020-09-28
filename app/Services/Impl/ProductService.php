@@ -67,13 +67,6 @@ final class ProductService implements ProductServiceInterface
         $this->checkIfUserIsLogged();
 
         return DB::transaction(function() use($data) {
-            $image = $data['image'];
-
-            unset($data['image']);
-
-            store_image($image, $data['sku']);
-
-            $data['image'] = get_image_name($image, $data['sku']);
             $product = $this->productRepository->create($data);
 
             $transactionData = [

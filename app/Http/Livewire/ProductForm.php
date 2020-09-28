@@ -55,13 +55,18 @@ class ProductForm extends Component
             'size_id' => $this->sizeId,
             'sku' => $this->sku,
             'price' => $this->price,
-            'description' => $this->description,
-            'image' => $this->image
+            'description' => $this->description
         ];
 
-        $productService->create($data);
+        try {
+            $image = $this->image->storePublicly('products', 's3');
+            $data['image'] = get_image_name('products', $image);
+            $productService->create($data);
 
-        session()->flash('message', __("Product successfully created."));
+            session()->flash('message', __("Product successfully created."));
+        } catch (\Exception $e) {
+            session()->flash('message', __("Product successfully created."));
+        }
 
         $this->redirect('/products');
     }

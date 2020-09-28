@@ -20,13 +20,15 @@ if (!function_exists('store_image')) {
 
 if (!function_exists('get_image_name')) {
     /**
-     * @param $image
-     * @param string $name
+     * @param string $s3ImageFolder AWS S3 image folder name
+     * @param string $name Image file name
      * @return string
      */
-    function get_image_name($image, string $name): string
+    function get_image_name(string $s3ImageFolder, string $name): string
     {
-        return "{$name}.{$image->extension()}";
+        $pattern = "/{$s3ImageFolder}\//i";
+
+        return preg_replace($pattern, '', $name);
     }
 }
 

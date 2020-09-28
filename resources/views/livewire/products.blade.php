@@ -23,7 +23,7 @@
             <div class="m-2 max-w-xs rounded overflow-hidden shadow-lg">
                 <button wire:click="redirectToProductDetail({{ $product->id }})">
                     <img class="w-64 h-64 object-cover"
-                         src="{{ asset("images/{$product->image}") }}"
+                         src="{{ get_s3_image($product->image) }}"
                          alt="{{ $product->sku }}"
                          title="{{ $product->sku }}">
                 </button>

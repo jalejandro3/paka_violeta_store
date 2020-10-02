@@ -1,16 +1,18 @@
 <div>
     <div class="w-full sm:max-w-full bg-white shadow-md overflow-hidden sm:rounded-lg bg-gray-100">
         <div class="flex flex-col sm:flex-row items-center text-center">
-            <div class="flex flex-auto flex-shrink-0 mb-5 sm:mb-0">
-                <div class="relative mt-5 sm:m-auto w-auto">
+            <div class="flex flex-shrink-0 mb-5 flex-grow sm:mb-0">
+                <div class="relative mt-5 sm:mt-0 sm:ml-5">
                     <div class="pointer-events-none absolute inset-y-0 left-0 pl-4 flex items-center">
                         <svg class="fill-current pointer-events-none text-gray-600 w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"></path></svg>
                     </div>
-                    <input id="product_search"
-                           class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block appearance-none leading-normal pr-4 pl-10"
-                           type="text"
-                           placeholder="{{ __("Search product") }}"
-                           wire:model="search">
+                    <div class="w-fill-current">
+                        <input id="product_search"
+                               class="bg-white focus:outline-none w-64 focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block appearance-none leading-normal pr-4 pl-10"
+                               type="text"
+                               placeholder="{{ __("Search product") }}"
+                               wire:model="search">
+                    </div>
                 </div>
             </div>
             <div class="flex flex-auto">

@@ -14,7 +14,7 @@
             </div>
         </div>
         <img class="object-cover object-center bg-gray-400 w-64 h-64 my-5"
-             src="{{ asset("images/{$product->image}") }}"
+             src="{{ get_s3_image($product->image) }}"
              alt="{{ $product->sku }}"
              title="{{ $product->sku }}">
         <p class="text-purple-800 text-base">

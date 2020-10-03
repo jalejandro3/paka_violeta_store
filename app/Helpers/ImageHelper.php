@@ -4,20 +4,6 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\Storage;
 
-if (!function_exists('store_image')) {
-    /**
-     * @param $image
-     * @param string $name
-     */
-    function store_image($image, string $name): void
-    {
-        $extension = $image->extension();
-        $imageName = "{$name}.{$extension}";
-
-        Storage::disk('s3')->putFileAs("products", $image, $imageName, 'public');
-    }
-}
-
 if (!function_exists('get_image_name')) {
     /**
      * @param string $s3ImageFolder AWS S3 image folder name

@@ -59,8 +59,8 @@ class ProductForm extends Component
         ];
 
         try {
-            $image = $this->image->storePublicly('products', 's3');
-            $data['image'] = get_image_name('products', $image);
+            $data['image'] = $this->storeImageInAws();
+
             $productService->create($data);
 
             session()->flash('message', __("Product successfully created."));
@@ -89,4 +89,14 @@ class ProductForm extends Component
             $this->brands = Brand::whereCategoryId($this->categoryId)->get();
         }
     }
+
+    //@TODO: Pasar logica de imagen a un componente de imagenes.
+
+    private function storeImageInAws()
+    {
+        $storedImage = $this->image->storePublicly('products', 's3');
+
+        return get_image_name('products', $storedImage);
+    }
+
 }

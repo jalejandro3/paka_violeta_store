@@ -39,6 +39,14 @@ final class ProductRepository implements ProductRepositoryInterface
     /**
      * @inheritDoc
      */
+    public function findLatest(): ?Product
+    {
+        return $this->product->latest('created_at')->first();
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function findAllWithPagination(): LengthAwarePaginator
     {
         return $this->product->paginate(env('PRODUCT_PAGINATION'));

@@ -132,7 +132,8 @@
                 <input id="sku"
                        class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block appearance-none leading-normal"
                        type="text"
-                       wire:model="sku">
+                       wire:model="sku"
+                       disabled>
                 @error('sku') <span class="text-red-500">{{ $message }}</span> @enderror
             </div>
         </div>

@@ -7,7 +7,7 @@ namespace App\Http\Livewire;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Repositories\ColorRepository;
-use App\Repositories\Impl\ProductRepository;
+use App\Repositories\ProductRepository;
 use App\Repositories\SizeRepository;
 use App\Services\ProductService;
 use Illuminate\Database\Eloquent\Collection;

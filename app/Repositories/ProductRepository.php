@@ -11,21 +11,28 @@ use Illuminate\Pagination\LengthAwarePaginator;
 interface ProductRepository
 {
     /**
-     * Get all products
+     * Find all products
      *
      * @return Collection
      */
     public function findAll(): Collection;
 
     /**
-     * Get all products paginated
+     * Find latest product record
+     *
+     * @return Product|null
+     */
+    public function findLatest(): ?Product;
+
+    /**
+     * Find all products paginated
      *
      * @return LengthAwarePaginator
      */
     public function findAllWithPagination(): LengthAwarePaginator;
 
     /**
-     * Get a product by id
+     * Find a product by id
      *
      * @param int $id Product id
      * @return Product|null

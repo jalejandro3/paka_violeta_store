@@ -7,6 +7,7 @@ namespace App\Http\Livewire;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Repositories\ColorRepository;
+use App\Repositories\ProductRepository;
 use App\Repositories\SizeRepository;
 use App\Services\ProductService;
 use Illuminate\Database\Eloquent\Collection;
@@ -71,9 +72,11 @@ class ProductForm extends Component
         $this->redirect('/products');
     }
 
-    public function render()
+    public function render(ProductRepository $productRepository)
     {
         $this->getBrandsByCategoryId();
+
+        $this->setProductSku($productRepository);
 
         return view('livewire.product-form');
     }
@@ -99,4 +102,14 @@ class ProductForm extends Component
         return get_image_name('products', $storedImage);
     }
 
+    private function setProductSku(ProductRepository $productRepository)
+    {
+        $skuId = 1;
+
+        if ($latest = $productRepository->findLatest()) {
+            $skuId = $latest->id + 1;
+        }
+
+        $this->sku = "P-{$skuId}";
+    }
 }

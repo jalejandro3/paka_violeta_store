@@ -6,6 +6,7 @@ namespace App\Repositories;
 
 use App\Models\Color;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 interface ColorRepository
 {
@@ -15,6 +16,13 @@ interface ColorRepository
      * @return Collection
      */
     public function findAll(): Collection;
+
+    /**
+     * Find all colors paginated
+     *
+     * @return LengthAwarePaginator
+     */
+    public function findAllWithPagination(): LengthAwarePaginator;
 
     /**
      * Create a color

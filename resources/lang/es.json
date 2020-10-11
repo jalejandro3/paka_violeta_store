@@ -58,5 +58,22 @@
     "Cancel": "Cancelar",
     "Deleted": "Eliminado",
     "Product successfully deleted.": "Producto eliminado exitosamente.",
-    "Product successfully created.": "Producto creado exitosamente."
+    "Product successfully created.": "Producto creado exitosamente.",
+    "Create Brand": "Crear Marca",
+    "New Brand": "Nueva Marca",
+    "Brand successfully created.": "Marca creada exitosamente.",
+    "There are not brands.": "No hay marcas.",
+    "Actions": "Acciones",
+    "Edit": "Editar",
+    "Add Brand": "Agregar Marca",
+    "Colors": "Colores",
+    "Options": "Opciones",
+    "Add Color": "Agregar Color",
+    "Brand name": "Nombre de la marca",
+    "Color name": "Nombre del color",
+    "Color successfully created.": "Color creado exitosamente.",
+    "Manage Account": "Administrar Cuenta",
+    "Profile": "Perfil",
+    "Logout": "Cerrar Sesion",
+    "Search brand": "Buscar marca"
 }

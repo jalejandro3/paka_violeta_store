@@ -33,6 +33,28 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/accounting', function () 
 })->name('accounting');
 
 /**
+ * BRANDS
+ */
+Route::middleware(['auth:sanctum', 'verified'])->get('/brands', function () {
+    return view('admin.brands');
+})->name('brands');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/brands/create', function () {
+    return view('admin.brand-form');
+})->name('brand-form');
+
+/**
+ * COLORS
+ */
+Route::middleware(['auth:sanctum', 'verified'])->get('/colors', function () {
+    return view('admin.colors');
+})->name('colors');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/colors/create', function () {
+    return view('admin.color-form');
+})->name('color-form');
+
+/**
  * PRODUCTS
  */
 Route::middleware(['auth:sanctum', 'verified'])->get('/products', function () {

@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => env('APP_LOCALE', 'en'),
+    'locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -176,13 +176,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
-
-        /*
-         * Custom Service Providers
-         */
-        App\Providers\ServiceServiceProvider::class,
-        App\Providers\RepositoryServiceProvider::class,
-        App\Providers\HelperServiceProvider::class,
 
     ],
 

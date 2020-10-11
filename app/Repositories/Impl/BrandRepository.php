@@ -44,6 +44,23 @@ final class BrandRepository implements BradRepositoryInterface
     /**
      * @inheritDoc
      */
+    public function findByTerm(string $searchTerm): LengthAwarePaginator
+    {
+        $searchTermWildCard = '%' . $searchTerm . '%';
+        $fields = ['categories.name', 'brands.name'];
+
+        return $this->brand->join('categories', 'brands.category_id', '=', 'categories.id')
+            ->select('brands.name', 'brands.category_id')
+            ->where(function($q) use($searchTerm, $fields, $searchTermWildCard) {
+                foreach ($fields as $index => $field) {
+                    $q->orWhere($field, 'like', $searchTermWildCard);
+                }
+            })->paginate(env('BRAND_PAGINATION'));
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function create(int $categoryId, string $name): bool
     {
         return $this->brand->fill(['category_id' => $categoryId, 'name' => $name])->save();

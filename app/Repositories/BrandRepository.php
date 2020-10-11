@@ -22,6 +22,14 @@ interface BrandRepository
     public function findAllWithPagination(): LengthAwarePaginator;
 
     /**
+     * Find products by a term
+     *
+     * @param string $searchTerm
+     * @return LengthAwarePaginator
+     */
+    public function findByTerm(string $searchTerm): LengthAwarePaginator;
+
+    /**
      * Create a brand
      *
      * @param int $categoryId category id

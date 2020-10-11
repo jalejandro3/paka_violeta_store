@@ -33,6 +33,17 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/accounting', function () 
 })->name('accounting');
 
 /**
+ * BRANDS
+ */
+Route::middleware(['auth:sanctum', 'verified'])->get('/brands', function () {
+    return view('admin.brands');
+})->name('brands');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/brands/create', function () {
+    return view('admin.brand-form');
+})->name('brand-form');
+
+/**
  * PRODUCTS
  */
 Route::middleware(['auth:sanctum', 'verified'])->get('/products', function () {

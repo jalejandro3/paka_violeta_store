@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\BrandRepository as BrandRepositoryInterface;
+use App\Repositories\Impl\BrandRepository;
 use App\Repositories\UserRepository as UserRepositoryInterface;
 use App\Repositories\Impl\UserRepository;
 use App\Repositories\ColorRepository as ColorRepositoryInterface;
@@ -32,6 +34,7 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->singleton(BrandRepositoryInterface::class, BrandRepository::class);
         $this->app->singleton(ColorRepositoryInterface::class, ColorRepository::class);
         $this->app->singleton(CategoryRepositoryInterface::class, CategoryRepository::class);
         $this->app->singleton(CategorySizeRepositoryInterface::class, CategorySizeRepository::class);

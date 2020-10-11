@@ -7,6 +7,7 @@ namespace App\Repositories\Impl;
 use App\Models\Color;
 use App\Repositories\ColorRepository as ColorRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 final class ColorRepository implements ColorRepositoryInterface
 {
@@ -32,6 +33,14 @@ final class ColorRepository implements ColorRepositoryInterface
     public function findAll(): Collection
     {
         return $this->color->get();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function findAllWithPagination(): LengthAwarePaginator
+    {
+        return $this->color->paginate(env('COLOR_PAGINATION'));
     }
 
     /**

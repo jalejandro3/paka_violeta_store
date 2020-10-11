@@ -44,6 +44,17 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/brands/create', function 
 })->name('brand-form');
 
 /**
+ * COLORS
+ */
+Route::middleware(['auth:sanctum', 'verified'])->get('/colors', function () {
+    return view('admin.colors');
+})->name('colors');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/colors/create', function () {
+    return view('admin.color-form');
+})->name('color-form');
+
+/**
  * PRODUCTS
  */
 Route::middleware(['auth:sanctum', 'verified'])->get('/products', function () {

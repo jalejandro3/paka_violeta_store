@@ -67,5 +67,12 @@
     "Edit": "Editar",
     "Add Brand": "Agregar Marca",
     "Colors": "Colores",
-    "Options": "Opciones"
+    "Options": "Opciones",
+    "Add Color": "Agregar Color",
+    "Brand name": "Nombre de la marca",
+    "Color name": "Nombre del color",
+    "Color successfully created.": "Color creado exitosamente.",
+    "Manage Account": "Administrar Cuenta",
+    "Profile": "Perfil",
+    "Logout": "Cerrar Sesion"
 }

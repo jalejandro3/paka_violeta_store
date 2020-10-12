@@ -46,6 +46,21 @@ final class ColorRepository implements ColorRepositoryInterface
     /**
      * @inheritDoc
      */
+    public function findByTerm(string $searchTerm): LengthAwarePaginator
+    {
+        $searchTermWildCard = '%' . $searchTerm . '%';
+        $fields = ['name'];
+
+        return $this->color->where(function($q) use($searchTerm, $fields, $searchTermWildCard) {
+                foreach ($fields as $index => $field) {
+                    $q->orWhere($field, 'like', $searchTermWildCard);
+                }
+            })->paginate(env('COLOR_PAGINATION'));
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function create(string $name): bool
     {
         return $this->color->fill(['name' => $name])->save();

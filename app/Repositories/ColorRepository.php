@@ -25,6 +25,14 @@ interface ColorRepository
     public function findAllWithPagination(): LengthAwarePaginator;
 
     /**
+     * Find colors by a term
+     *
+     * @param string $searchTerm
+     * @return LengthAwarePaginator
+     */
+    public function findByTerm(string $searchTerm): LengthAwarePaginator;
+
+    /**
      * Create a color
      *
      * @param string $name Color name
